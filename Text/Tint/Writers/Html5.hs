@@ -6,6 +6,7 @@ module Text.Tint.Writers.Html5 (
   , writeHtml5Standalone
   ) where
 
+import qualified Data.List                     as L
 import           Data.Monoid
 import           Data.Text
 import qualified Data.Text                     as T
@@ -32,7 +33,8 @@ writeHtml5Standalone colours code = renderHtml . docTypeHtml $
   H.body $ writeHtml5 code
 
 writeInner :: CodeBlock -> Html
-writeInner (CodeBlock {..}) = H.code ! class_ cls $ mapM_ writeSub content
+writeInner (CodeBlock {..}) = H.code ! class_ cls $ sequence_ $
+                              L.intersperse H.br $ fmap writeSub content
   where cls = textValue $ pack "language-" <> language <> singleton ' '
                           <> T.unwords classes
 
