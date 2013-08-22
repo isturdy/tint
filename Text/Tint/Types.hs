@@ -11,6 +11,9 @@ data TxtClass = NRM -- ^ Normal text; unhighlit
               | OP  -- ^ Operator
               | KWD -- ^ Keyword
               | TYP -- ^ Datatype
+              | NUM -- ^ Number
+              | CHR -- ^ Character
+              | BSN -- ^ Non-decimal number
               | OT1 -- ^ Miscellaneous 1
               | OT2 -- ^ Miscellaneous 2
                 deriving (Show)
